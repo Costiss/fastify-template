@@ -1,0 +1,38 @@
+{
+    "name": "fastify-boilerplate",
+    "module": "index.ts",
+    "type": "module",
+    "scripts": {
+        "dev": "bun run --hot src/index.ts",
+        "lint": "eslint . --fix",
+        "lint:check": "eslint \"{src,apps,libs,test}/**/*.ts\"",
+        "generate": "drizzle-kit generate",
+        "migrate": "drizzle-kit migrate"
+    },
+    "devDependencies": {
+        "@eslint/eslintrc": "^3.1.0",
+        "@eslint/js": "^9.9.0",
+        "@types/bun": "latest",
+        "drizzle-kit": "^0.24.0",
+        "eslint": "^9.9.0",
+        "globals": "^15.9.0",
+        "pino-pretty": "^11.2.2",
+        "typescript-eslint": "^8.1.0"
+    },
+    "peerDependencies": {
+        "typescript": "^5.0.0"
+    },
+    "dependencies": {
+        "@opentelemetry/api": "^1.9.0",
+        "drizzle-orm": "^0.33.0",
+        "eslint-config-prettier": "^9.1.0",
+        "eslint-plugin-prettier": "^5.2.1",
+        "fastify": "^4.28.1",
+        "fastify-plugin": "^4.5.1",
+        "fastify-type-provider-zod": "^2.0.0",
+        "pg": "^8.12.0",
+        "pino": "^9.3.2",
+        "postgres": "^3.4.4",
+        "zod": "^3.23.8"
+    }
+}

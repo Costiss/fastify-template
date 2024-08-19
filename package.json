@@ -25,6 +25,7 @@
     "dependencies": {
         "@opentelemetry/api": "^1.9.0",
         "drizzle-orm": "^0.33.0",
+        "drizzle-zod": "^0.5.1",
         "eslint-config-prettier": "^9.1.0",
         "eslint-plugin-prettier": "^5.2.1",
         "fastify": "^4.28.1",

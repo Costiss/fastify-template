@@ -8,7 +8,9 @@
         "lint:check": "eslint \"{src,apps,libs,test}/**/*.ts\"",
         "generate": "drizzle-kit generate",
         "migrate": "drizzle-kit migrate",
-        "openapi": "bun run docs/index.ts"
+        "openapi": "bun run docs/index.ts",
+        "test": "vitest",
+        "test:coverage": "vitest run --coverage"
     },
     "devDependencies": {
         "@eslint/eslintrc": "^3.1.0",
@@ -18,7 +20,8 @@
         "eslint": "^9.9.0",
         "globals": "^15.9.0",
         "pino-pretty": "^11.2.2",
-        "typescript-eslint": "^8.1.0"
+        "typescript-eslint": "^8.1.0",
+        "vitest": "^2.0.5"
     },
     "peerDependencies": {
         "typescript": "^5.0.0"

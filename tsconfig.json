@@ -27,6 +27,7 @@
     "include": [
         "src",
         "docs",
+        "vitest.config.ts",
         "drizzle.config.ts",
         "eslint.config.mjs"
     ]

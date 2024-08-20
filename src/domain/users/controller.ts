@@ -3,6 +3,8 @@ import type { UserService } from './user.service';
 import { insertUserSchema, selectUserSchema } from './schema';
 import { z } from 'zod';
 
+const OPENAPI_TAGS = ['users'];
+
 export const UsersControllerV1: FastifyPluginCallbackZod = (fastify, _, done) => {
     const userService = fastify.diContainer.resolve<UserService>('userService');
 
@@ -10,6 +12,7 @@ export const UsersControllerV1: FastifyPluginCallbackZod = (fastify, _, done) =>
         url: '/users',
         method: 'GET',
         schema: {
+            tags: OPENAPI_TAGS,
             response: {
                 200: z.array(selectUserSchema)
             }
@@ -24,6 +27,7 @@ export const UsersControllerV1: FastifyPluginCallbackZod = (fastify, _, done) =>
         url: '/users/:id',
         method: 'GET',
         schema: {
+            tags: OPENAPI_TAGS,
             params: z.object({
                 id: z.coerce.number()
             }),
@@ -41,6 +45,7 @@ export const UsersControllerV1: FastifyPluginCallbackZod = (fastify, _, done) =>
         url: '/users',
         method: 'POST',
         schema: {
+            tags: OPENAPI_TAGS,
             body: insertUserSchema,
             response: {
                 201: selectUserSchema

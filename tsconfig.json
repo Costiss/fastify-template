@@ -26,6 +26,7 @@
     },
     "include": [
         "src",
+        "docs",
         "drizzle.config.ts",
         "eslint.config.mjs"
     ]

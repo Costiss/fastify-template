@@ -7,11 +7,13 @@ import { DomainApp } from './domain';
 import { ErrorsHandlerFastifyPlugin } from './infra/errors';
 import { DatabaseFastifyPlugin } from './infra/database';
 import { fastifyAwilixPlugin as DIFastifyPlugin } from '@fastify/awilix';
+import { OpenAPIFastifyPlugin } from './infra/openapi';
 
 const server = Fastify({ logger: logger, disableRequestLogging: true });
 server.setValidatorCompiler(validatorCompiler);
 server.setSerializerCompiler(serializerCompiler);
 
+await server.register(OpenAPIFastifyPlugin);
 await server.register(DIFastifyPlugin);
 await server.register(DatabaseFastifyPlugin);
 await server.register(LoggerFastifyPlugin);

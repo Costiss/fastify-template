@@ -23,7 +23,10 @@
         "typescript": "^5.0.0"
     },
     "dependencies": {
+        "@fastify/awilix": "^5.1.0",
         "@opentelemetry/api": "^1.9.0",
+        "@types/pg": "^8.11.6",
+        "awilix": "^10.0.2",
         "drizzle-orm": "^0.33.0",
         "drizzle-zod": "^0.5.1",
         "eslint-config-prettier": "^9.1.0",
@@ -33,7 +36,6 @@
         "fastify-type-provider-zod": "^2.0.0",
         "pg": "^8.12.0",
         "pino": "^9.3.2",
-        "postgres": "^3.4.4",
         "zod": "^3.23.8"
     }
 }

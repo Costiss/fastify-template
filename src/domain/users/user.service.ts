@@ -1,4 +1,4 @@
-import { db, type Database } from '../../infra/database';
+import { type Database } from '../../infra/database';
 import { users } from '../../schema/schema';
 import type { TInsertUser, TUser } from './schema';
 
@@ -25,5 +25,3 @@ export class UserService {
             .then((users) => users[0]);
     }
 }
-
-export const userService = new UserService(db);

@@ -3,7 +3,7 @@ import { z } from 'zod';
 
 const OPENAPI_TAGS = ['healthcheck'];
 
-export const HealthcheckController: FastifyPluginCallbackZod = (fastify, _, done) => {
+export const HealthcheckRoute: FastifyPluginCallbackZod = (fastify, _, done) => {
     fastify.route({
         url: '/healthcheck',
         method: 'GET',

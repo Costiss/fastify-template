@@ -25,14 +25,14 @@ export const UsersControllerV1: FastifyPluginCallbackZod = (fastify, _, done) =>
         method: 'GET',
         schema: {
             params: z.object({
-                id: z.number()
+                id: z.coerce.number()
             }),
             response: {
                 200: selectUserSchema
             }
         },
         handler: async ({ params }, reply) => {
-            const user = await userService.getByID(params.id);
+            const user = await userService.getByID(Number(params.id));
             return reply.code(200).send(user);
         }
     });

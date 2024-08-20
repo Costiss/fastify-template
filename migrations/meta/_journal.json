@@ -8,6 +8,13 @@
       "when": 1723852211781,
       "tag": "0000_closed_aqueduct",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1724154859455,
+      "tag": "0001_foamy_starfox",
+      "breakpoints": true
     }
   ]
 }

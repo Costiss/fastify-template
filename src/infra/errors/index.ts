@@ -1,17 +1,35 @@
 import fp from 'fastify-plugin';
-import { z } from 'zod';
+import { z, ZodError } from 'zod';
 import { HttpError } from './http-error';
 
-export type TErrorResponse = z.infer<typeof ErrorResponse>;
+export type ErrorResponse = z.infer<typeof ErrorResponseSchema>;
 
-export const ErrorResponse = z.object({
-    message: z.string()
+export const ErrorResponseSchema = z.object({
+    message: z.string(),
+    name: z.string(),
+    code: z.optional(z.string())
 });
+
+export type BadRequestResponse = z.infer<typeof ErrorResponseSchema>;
+export const BadRequestResponseSchema = z.array(
+    z.object({
+        code: z.string(),
+        expected: z.string(),
+        received: z.string(),
+        path: z.array(z.string()),
+        message: z.string()
+    })
+);
 
 export const ErrorsHandlerFastifyPlugin = fp((fastify, _, done) => {
     fastify.setErrorHandler(async (error, _, reply) => {
         if (error instanceof HttpError) {
-            return reply.code(error.code).send(error.payload as never);
+            return reply.code(error.statusCode).send(error.payload as never);
+        } else if (error.name === ZodError.name) {
+            return reply
+                .code(error.statusCode ?? 400)
+                .header('content-type', 'application/json')
+                .send(error.message);
         }
 
         return reply.code(500).send({

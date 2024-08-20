@@ -7,7 +7,8 @@
         "lint": "eslint . --fix",
         "lint:check": "eslint \"{src,apps,libs,test}/**/*.ts\"",
         "generate": "drizzle-kit generate",
-        "migrate": "drizzle-kit migrate"
+        "migrate": "drizzle-kit migrate",
+        "openapi": "bun run docs/index.ts"
     },
     "devDependencies": {
         "@eslint/eslintrc": "^3.1.0",

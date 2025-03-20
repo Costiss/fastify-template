@@ -1,13 +1,18 @@
 import type { FastifyPluginAsyncZod } from 'fastify-type-provider-zod';
-import type { Cradle } from '@fastify/awilix';
 import { UserService } from './user.service';
-import { asFunction } from 'awilix';
+import { asClass } from 'awilix';
 import { UsersControllerV1 } from './controller';
 import { Version } from '../utils/version';
 
+declare global {
+    interface Dependencies {
+        userService: UserService;
+    }
+}
+
 export const UsersModule: FastifyPluginAsyncZod = async (fastify) => {
-    fastify.diContainer.register({
-        userService: asFunction((ctx: Cradle) => new UserService(ctx.db))
+    fastify.dependencies.register({
+        userService: asClass(UserService).scoped()
     });
 
     await fastify.register(UsersControllerV1, { prefix: Version.V1 });

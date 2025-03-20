@@ -6,7 +6,7 @@ import { z } from 'zod';
 const OPENAPI_TAGS = ['users'];
 
 export const UsersControllerV1: FastifyPluginCallbackZod = (fastify, _, done) => {
-    const userService = fastify.diContainer.resolve<UserService>('userService');
+    const userService = fastify.dependencies.resolve<UserService>('userService');
 
     fastify.route({
         url: '/users',

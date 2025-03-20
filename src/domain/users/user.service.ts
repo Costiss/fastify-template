@@ -3,7 +3,11 @@ import { users } from '../../schema/schema';
 import type { TInsertUser, TUser } from './schema';
 
 export class UserService {
-    constructor(private readonly db: Database) {}
+    private db: Database;
+
+    constructor({ db }: Dependencies) {
+        this.db = db;
+    }
 
     async list(): Promise<TUser[]> {
         return this.db.select().from(users);

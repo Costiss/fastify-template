@@ -5,6 +5,12 @@ import fp from 'fastify-plugin';
 import * as schema from '../../schema/schema';
 import { asValue } from 'awilix';
 
+declare global {
+    interface Dependencies {
+        db: Database;
+    }
+}
+
 export type Database = NodePgDatabase<typeof schema>;
 
 export const DatabasePlugin = fp(async (fastify) => {
@@ -13,5 +19,5 @@ export const DatabasePlugin = fp(async (fastify) => {
 
     await pool.connect();
 
-    fastify.diContainer.register({ db: asValue(db) });
+    fastify.dependencies.register({ db: asValue(db) });
 });

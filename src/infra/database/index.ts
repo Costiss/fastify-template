@@ -1,9 +1,9 @@
 import { drizzle, NodePgDatabase } from 'drizzle-orm/node-postgres';
 import { Pool } from 'pg';
-import { getEnv } from '../../domain/utils/env';
 import fp from 'fastify-plugin';
-import * as schema from '../../schema/schema';
 import { asValue } from 'awilix';
+import { getEnv } from 'src/modules/utils/env';
+import * as schema from './schema';
 
 declare global {
     interface Dependencies {

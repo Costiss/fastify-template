@@ -1,14 +1,15 @@
-import server from '../src/app';
+import { Application } from '../src/app';
 import fs from 'fs';
 import path from 'path';
 
-await server.ready();
+const app = await Application();
+await app.ready();
 
-const schema = JSON.stringify(server.swagger());
+const schema = JSON.stringify(app.swagger());
 
 fs.writeFileSync(path.join(__dirname, 'openapi.json'), schema, { flag: 'w+' });
 
-await server.close();
+await app.close();
 
 console.log('OpenAPI Spec generated successfully');
 process.exit(0);

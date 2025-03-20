@@ -1,7 +1,7 @@
 import type { FastifyInstance } from 'fastify';
 import { beforeEach, describe, expect, test } from 'vitest';
 import fastify from 'fastify';
-import { ErrorsHandlerFastifyPlugin } from '.';
+import { ErrorsHandlerPlugin } from '.';
 import { HttpError } from './http-error';
 import { z } from 'zod';
 import { serializerCompiler, validatorCompiler } from 'fastify-type-provider-zod';
@@ -14,7 +14,7 @@ describe('[UNIT] FastifyErrorsHandlerPlugin', () => {
         server.setValidatorCompiler(validatorCompiler);
         server.setSerializerCompiler(serializerCompiler);
 
-        await server.register(ErrorsHandlerFastifyPlugin);
+        await server.register(ErrorsHandlerPlugin);
     });
 
     test('it should handle HttpError without payload correctly', () => {

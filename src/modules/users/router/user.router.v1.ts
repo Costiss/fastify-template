@@ -1,12 +1,11 @@
 import type { FastifyPluginCallbackZod } from 'fastify-type-provider-zod';
-import type { UserService } from './user.service';
-import { insertUserSchema, selectUserSchema } from './schema';
 import { z } from 'zod';
+import { selectUserSchema, insertUserSchema } from '../schema';
 
 const OPENAPI_TAGS = ['users'];
 
-export const UsersControllerV1: FastifyPluginCallbackZod = (fastify, _, done) => {
-    const userService = fastify.dependencies.resolve<UserService>('userService');
+export const UsersRouterV1: FastifyPluginCallbackZod = (fastify, _, done) => {
+    const userService = fastify.dependencies.resolve('user_service');
 
     fastify.route({
         url: '/users',

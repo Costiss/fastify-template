@@ -1,19 +1,17 @@
-import { drizzle } from 'drizzle-orm/node-postgres';
-import { Client } from 'pg';
+import { drizzle, NodePgDatabase } from 'drizzle-orm/node-postgres';
+import { Pool } from 'pg';
 import { getEnv } from '../../domain/utils/env';
 import fp from 'fastify-plugin';
 import * as schema from '../../schema/schema';
 import { asValue } from 'awilix';
 
-const client = new Client({
-    connectionString: getEnv('DATABASE_URL')
-});
-export type Database = typeof db;
-export const db = drizzle(client, { schema });
+export type Database = NodePgDatabase<typeof schema>;
 
-await client.connect();
+export const DatabasePlugin = fp(async (fastify) => {
+    const pool = new Pool({ connectionString: getEnv('DATABASE_URL') });
+    const db = drizzle(pool, { schema });
 
-export const DatabaseFastifyPlugin = fp((fastify, _, done) => {
+    await pool.connect();
+
     fastify.diContainer.register({ db: asValue(db) });
-    done();
 });

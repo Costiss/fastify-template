@@ -1,4 +1,4 @@
-import { DatabaseFastifyPlugin } from './database';
+import { DatabasePlugin } from './database';
 import { ErrorsHandlerPlugin } from './errors';
 import { HealthcheckRoute } from './healthcheck';
 import { LoggerFastifyPlugin } from './logger/plugin';
@@ -13,7 +13,7 @@ export const InfraestructurePlugin = fp(async (fastify) => {
 
     await fastify.register(OpenAPIFastifyPlugin);
     await fastify.register(DIFastifyPlugin);
-    await fastify.register(DatabaseFastifyPlugin);
+    await fastify.register(DatabasePlugin);
     await fastify.register(LoggerFastifyPlugin);
     await fastify.register(ErrorsHandlerPlugin);
     await fastify.register(HealthcheckRoute);

@@ -1,10 +1,22 @@
 export class HttpError extends Error {
-    constructor(
-        readonly statusCode: number,
-        readonly message: string,
-        readonly errorCode?: string,
-        readonly payload?: unknown
-    ) {
+    public readonly statusCode: number;
+    public readonly tag?: string;
+    public readonly payload?: unknown;
+
+    constructor({
+        statusCode,
+        message,
+        tag,
+        payload
+    }: {
+        statusCode: number;
+        message: string;
+        tag?: string;
+        payload?: unknown;
+    }) {
         super(message);
+        this.statusCode = statusCode;
+        this.tag = tag;
+        this.payload = payload;
     }
 }
